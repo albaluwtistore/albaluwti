@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معلومات العميل - متجر البلوطي</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .dark-mode-toggle {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .dark-mode-toggle:hover {
+            transform: rotate(180deg);
+            background-color: #ff0000;
+        }
+        body.dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dark mode toggle -->
+    <div class="dark-mode-toggle" onclick="toggleDarkMode()">
+        🌙
+    </div>
+
+    <!-- شريط التنقل الدائري -->
+    <nav class="circular-navbar">
+        <ul>
+            <li class="nav-item">
+                <a href="index.html">
+                    <i class="fas fa-home"></i>
+                    <span>الرئيسية</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="products.html">
+                    <i class="fas fa-box"></i>
+                    <span>المنتجات</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="offers.html">
+                    <i class="fas fa-tags"></i>
+                    <span>العروض</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="cart.html">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>السلة</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="account.html">
+                    <i class="fas fa-user"></i>
+                    <span>الحساب</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="content">
+        <header>
+            <h1>معلومات العميل</h1>
+            <p>يرجى ملء النموذج أدناه لإتمام الطلب.</p>
+        </header>
+
+        <div class="customer-info-container">
+            <form action="thank-you.html" method="POST">
+                <label for="name">الاسم:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="address">العنوان:</label>
+                <input type="text" id="address" name="address" required>
+
+                <label for="phone">رقم الهاتف:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="email">البريد الإلكتروني:</label>
+                <input type="email" id="email" name="email" required>
+
+                <button type="submit" class="checkout">إرسال</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2023 - متجر البلوطي</p>
+        <div class="social-links" style="font-size: 2em; text-align: center;">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>

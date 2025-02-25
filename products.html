@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جميع المنتجات - متجر البلوطي</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="size-medium">
+    <!-- المحتوى الرئيسي -->
+    <div class="content" style="margin-top: 60px;">
+        <header>
+            <h1>جميع المنتجات</h1>
+            <p>تصفح جميع المنتجات المتاحة في متجر البلوطي.</p>
+        </header>
+
+        <div class="products">
+            <!-- منتج 1 -->
+            <div class="product-card">
+                <img src="https://i.imgur.com/8V8V8V8.jpg" alt="منتج 1">
+                <div class="details">
+                    <h2>حليب المراعي</h2>
+                    <p>السعر: 1.50 دينار</p>
+                    <p>حليب طازج من أفضل المزارع المحلية.</p>
+                    <button class="btn" onclick="addToCart('حليب المراعي', 1.5)">أضف إلى السلة</button>
+                </div>
+            </div>
+
+            <!-- منتج 2 -->
+            <div class="product-card">
+                <img src="https://i.imgur.com/9W9W9W9.jpg" alt="منتج 2">
+                <div class="details">
+                    <h2>شوكولاتة دبي (العقاب)</h2>
+                    <p>السعر: 2 دينار</p>
+                    <p>شوكولاتة لذيذة من أفضل أنواع الكاكاو.</p>
+                    <button class="btn" onclick="addToCart('شوكولاتة دبي', 2)">أضف إلى السلة</button>
+                </div>
+            </div>
+
+            <!-- منتج 3 -->
+            <div class="product-card">
+                <img src="https://i.imgur.com/1A1A1A1.jpg" alt="منتج 3">
+                <div class="details">
+                    <h2>ماتركس كولا</h2>
+                    <p>السعر: 0.30 دينار</p>
+                    <p>مشروبات غازية منعشة ومناسبة لجميع المناسبات.</p>
+                    <button class="btn" onclick="addToCart('ماتركس كولا', 0.3)">أضف إلى السلة</button>
+                </div>
+            </div>
+
+            <!-- منتج 4 -->
+            <div class="product-card">
+                <img src="https://i.imgur.com/2B2B2B2.jpg" alt="منتج 4">
+                <div class="details">
+                    <h2>عصير برتقال</h2>
+                    <p>السعر: 1 دينار</p>
+                    <p>عصير طبيعي منعش.</p>
+                    <button class="btn" onclick="addToCart('عصير برتقال', 1)">أضف إلى السلة</button>
+                </div>
+            </div>
+
+            <!-- منتج 5 -->
+            <div class="product-card">
+                <img src="https://i.imgur.com/3C3C3C3.jpg" alt="منتج 5">
+                <div class="details">
+                    <h2>بسكويت الشوكولاتة</h2>
+                    <p>السعر: 1.2 دينار</p>
+                    <p>بسكويت لذيذ بالشوكولاتة.</p>
+                    <button class="btn" onclick="addToCart('بسكويت الشوكولاتة', 1.2)">أضف إلى السلة</button>
+                </div>
+            </div>
+
+            <!-- منتج 6 -->
+            <div class="product-card">
+                <img src="https://i.imgur.com/4D4D4D4.jpg" alt="منتج 6">
+                <div class="details">
+                    <h2>رقائق البطاطس</h2>
+                    <p>السعر: 0.5 دينار</p>
+                    <p>رقائق بطاطس مقرمشة.</p>
+                    <button class="btn" onclick="addToCart('رقائق البطاطس', 0.5)">أضف إلى السلة</button>
+                </div>
+            </div>
+
+            <!-- منتج 7 -->
+            <div class="product-card">
+                <img src="https://i.imgur.com/5E5E5E5.jpg" alt="منتج 7">
+                <div class="details">
+                    <h2>مكسرات مشكلة</h2>
+                    <p>السعر: 3 دينار</p>
+                    <p>مكسرات طازجة ومشكلة.</p>
+                    <button class="btn" onclick="addToCart('مكسرات مشكلة', 3)">أضف إلى السلة</button>
+                </div>
+            </div>
+
+            <!-- منتج 8 -->
+            <div class="product-card">
+                <img src="https://i.imgur.com/6F6F6F6.jpg" alt="منتج 8">
+                <div class="details">
+                    <h2>عصير تفاح</h2>
+                    <p>السعر: 1 دينار</p>
+                    <p>عصير تفاح طبيعي.</p>
+                    <button class="btn" onclick="addToCart('عصير تفاح', 1)">أضف إلى السلة</button>
+                </div>
+            </div>
+
+            <!-- منتج 9 -->
+            <div class="product-card">
+                <img src="https://i.imgur.com/7G7G7G7.jpg" alt="منتج 9">
+                <div class="details">
+                    <h2>شوكولاتة بالحليب</h2>
+                    <p>السعر: 2.5 دينار</p>
+                    <p>شوكولاتة بالحليب لذيذة.</p>
+                    <button class="btn" onclick="addToCart('شوكولاتة بالحليب', 2.5)">أضف إلى السلة</button>
+                </div>
+            </div>
+
+            <!-- منتج 10 -->
+            <div class="product-card">
+                <img src="https://i.imgur.com/8H8H8H8.jpg" alt="منتج 10">
+                <div class="details">
+                    <h2>بسكويت الفانيليا</h2>
+                    <p>السعر: 1.2 دينار</p>
+                    <p>بسكويت بنكهة الفانيليا.</p>
+                    <button class="btn" onclick="addToCart('بسكويت الفانيليا', 1.2)">أضف إلى السلة</button>
+                </div>
+            </div>
+
+            <!-- ...إضافة المزيد من المنتجات حتى 100 منتج... -->
+
+            <!-- منتج 100 -->
+            <div class="product-card">
+                <img src="https://i.imgur.com/9I9I9I9.jpg" alt="منتج 100">
+                <div class="details">
+                    <h2>عصير مانجو</h2>
+                    <p>السعر: 1.5 دينار</p>
+                    <p>عصير مانجو طبيعي.</p>
+                    <button class="btn" onclick="addToCart('عصير مانجو', 1.5)">أضف إلى السلة</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2023 - متجر البلوطي</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <!-- شريط التنقل الدائري -->
+    <nav class="circular-navbar">
+        <ul>
+            <li class="nav-item">
+                <a href="index.html">
+                    <i class="fas fa-home"></i>
+                    <span>الرئيسية</span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a href="products.html">
+                    <i class="fas fa-box"></i>
+                    <span>المنتجات</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="offers.html">
+                    <i class="fas fa-tags"></i>
+                    <span>العروض</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="cart.html">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>السلة</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="account.html">
+                    <i class="fas fa-user"></i>
+                    <span>الحساب</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>

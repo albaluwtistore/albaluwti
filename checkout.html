@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنهاء الطلب - متجر البلوطي</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .dark-mode-toggle {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .dark-mode-toggle:hover {
+            transform: rotate(180deg);
+            background-color: #ff0000;
+        }
+        body.dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark mode toggle -->
+    <div class="dark-mode-toggle" onclick="toggleDarkMode()">
+        🌙
+    </div>
+
+    <!-- شريط التنقل الدائري -->
+    <nav class="circular-navbar">
+        <ul>
+            <li class="nav-item active">
+                <a href="index.html">
+                    <i class="fas fa-home"></i>
+                    <span>الرئيسية</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="products.html">
+                    <i class="fas fa-box"></i>
+                    <span>المنتجات</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="offers.html">
+                    <i class="fas fa-tags"></i>
+                    <span>العروض</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="cart.html">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>السلة</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="account.html">
+                    <i class="fas fa-user"></i>
+                    <span>الحساب</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="content">
+        <header>
+            <h1>إنهاء الطلب</h1>
+            <p>أكمل معلوماتك لإنهاء عملية الشراء.</p>
+        </header>
+
+        <!-- نموذج إنهاء الطلب -->
+        <div class="checkout-form">
+            <form id="checkoutForm" onsubmit="sendEmail(event)">
+                <!-- العنوان -->
+                <label for="address">العنوان:</label>
+                <input type="text" id="address" name="address" required placeholder="أدخل عنوان التوصيل">
+
+                <!-- الاسم -->
+                <label for="name">الاسم:</label>
+                <input type="text" id="name" name="name" required placeholder="أدخل اسمك">
+
+                <!-- طريقة الدفع -->
+                <label for="paymentMethod">طريقة الدفع:</label>
+                <select id="paymentMethod" name="paymentMethod" required>
+                    <option value="cash">الدفع عند الاستلام</option>
+                    <option value="card">الدفع بالبطاقة</option>
+                    <option value="paypal">PayPal</option>
+                </select>
+
+                <!-- تفاصيل الطلب -->
+                <div class="order-summary">
+                    <h3>ملخص الطلب</h3>
+                    <ul id="order-items"></ul>
+                    <p><strong>الإجمالي: </strong><span id="order-total">0</span> دينار</p>
+                </div>
+
+                <!-- زر إنهاء الطلب -->
+                <button type="submit" class="checkout">تأكيد الطلب</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2023 - متجر البلوطي</p>
+        <div class="social-links" style="font-size: 2em; text-align: center;">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // دالة لإظهار أو إخفاء الشريط الجانبي
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const menuIcon = document.querySelector('.menu-icon');
+            sidebar.classList.toggle('active');
+            menuIcon.classList.toggle('active');
+        }
+
+        // دالة لإرسال الطلب (وهمية)
+        function sendEmail(event) {
+            event.preventDefault();
+            alert('تم إرسال الطلب بنجاح!');
+        }
+
+        // دالة لتحميل عناصر السلة وعرضها في ملخص الطلب
+        function loadCartItems() {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            const orderItemsList = document.getElementById('order-items');
+            const orderTotal = document.getElementById('order-total');
+
+            let total = 0;
+            orderItemsList.innerHTML = '';
+
+            cartItems.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - ${item.price} دينار`;
+                orderItemsList.appendChild(li);
+                total += item.price;
+            });
+
+            orderTotal.textContent = total;
+        }
+
+        // تحميل عناصر السلة عند فتح الصفحة
+        window.onload = loadCartItems;
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>

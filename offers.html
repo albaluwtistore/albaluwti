@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>العروض - متجر البلوطي</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* From Uiverse.io by Galahhad */
+        .theme-switch {
+            --toggle-size: 30px;
+            --container-width: 5.625em;
+            --container-height: 2.5em;
+            --container-radius: 6.25em;
+            --container-light-bg: #3D7EAE;
+            --container-night-bg: #1D1F2C;
+            --circle-container-diameter: 3.375em;
+            --sun-moon-diameter: 2.125em;
+            --sun-bg: #ECCA2F;
+            --moon-bg: #C4C9D1;
+            --spot-color: #959DB1;
+            --circle-container-offset: calc((var(--circle-container-diameter) - var(--container-height)) / 2 * -1);
+            --stars-color: #fff;
+            --clouds-color: #F3FDFF;
+            --back-clouds-color: #AACADF;
+            --transition: .5s cubic-bezier(0, -0.02, 0.4, 1.25);
+            --circle-transition: .3s cubic-bezier(0, -0.02, 0.35, 1.17);
+        }
+
+        .theme-switch, .theme-switch *, .theme-switch *::before, .theme-switch *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-size: var(--toggle-size);
+        }
+
+        .theme-switch__container {
+            width: var(--container-width);
+            height: var(--container-height);
+            background-color: var(--container-light-bg);
+            border-radius: var(--container-radius);
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0em -0.062em 0.062em rgba(0, 0, 0, 0.25), 0em 0.062em 0.125em rgba(255, 255, 255, 0.94);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .theme-switch__container::before {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            inset: 0;
+            box-shadow: 0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset, 0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset;
+            border-radius: var(--container-radius)
+        }
+
+        .theme-switch__checkbox {
+            display: none;
+        }
+
+        .theme-switch__circle-container {
+            width: var(--circle-container-diameter);
+            height: var(--circle-container-diameter);
+            background-color: rgba(255, 255, 255, 0.1);
+            position: absolute;
+            left: var(--circle-container-offset);
+            top: var(--circle-container-offset);
+            border-radius: var(--container-radius);
+            box-shadow: inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), 0 0 0 0.625em rgba(255, 255, 255, 0.1), 0 0 0 1.25em rgba(255, 255, 255, 0.1);
+            display: flex;
+            transition: var(--circle-transition);
+            pointer-events: none;
+        }
+
+        .theme-switch__sun-moon-container {
+            pointer-events: auto;
+            position: relative;
+            z-index: 2;
+            width: var(--sun-moon-diameter);
+            height: var(--sun-moon-diameter);
+            margin: auto;
+            border-radius: var(--container-radius);
+            background-color: var(--sun-bg);
+            box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #a1872a inset;
+            filter: drop-shadow(0.062em 0.125em 0.125em rgba(0, 0, 0, 0.25)) drop-shadow(0em 0.062em 0.125em rgba(0, 0, 0, 0.25));
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .theme-switch__moon {
+            transform: translateX(100%);
+            width: 100%;
+            height: 100%;
+            background-color: var(--moon-bg);
+            border-radius: inherit;
+            box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #969696 inset;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .theme-switch__spot {
+            position: absolute;
+            top: 0.75em;
+            left: 0.312em;
+            width: 0.75em;
+            height: 0.75em;
+            background-color: var(--spot-color);
+            border-radius: 50%;
+            box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #969696 inset;
+        }
+
+        .theme-switch__clouds {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--clouds-color);
+            border-radius: var(--container-radius);
+            box-shadow: 0 0 0 0.625em var(--back-clouds-color), 0 0 0 1.25em var(--back-clouds-color);
+            transition: var(--transition);
+        }
+
+        .theme-switch__stars-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .theme-switch__stars-container svg {
+            width: 100%;
+            height: auto;
+            fill: var(--stars-color);
+        }
+
+        .theme-switch__checkbox:checked ~ .theme-switch__container {
+            background-color: var(--container-night-bg);
+        }
+
+        .theme-switch__checkbox:checked ~ .theme-switch__container .theme-switch__circle-container {
+            transform: translateX(calc(var(--container-width) - var(--circle-container-diameter) - var(--circle-container-offset) * 2));
+        }
+
+        .theme-switch__checkbox:checked ~ .theme-switch__container .theme-switch__sun-moon-container {
+            background-color: var(--moon-bg);
+        }
+
+        .theme-switch__checkbox:checked ~ .theme-switch__container .theme-switch__moon {
+            transform: translateX(0);
+        }
+
+        .theme-switch__checkbox:checked ~ .theme-switch__container .theme-switch__clouds {
+            opacity: 0;
+        }
+
+        .theme-switch__checkbox:checked ~ .theme-switch__container .theme-switch__stars-container {
+            opacity: 1;
+        }
+
+        .theme-switch__checkbox:checked ~ .theme-switch__container .theme-switch__spot {
+            background-color: var(--spot-color);
+        }
+    </style>
+</head>
+<body class="size-medium">
+
+    <!-- Dark mode toggle -->
+    <div class="theme-switch">
+        <input type="checkbox" class="theme-switch__checkbox" id="theme-switch-checkbox" onclick="toggleDarkMode()">
+        <label class="theme-switch__container" for="theme-switch-checkbox">
+            <div class="theme-switch__circle-container">
+                <div class="theme-switch__sun-moon-container">
+                    <div class="theme-switch__moon">
+                        <div class="theme-switch__spot"></div>
+                        <div class="theme-switch__spot"></div>
+                        <div class="theme-switch__spot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </label>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="content">
+        <header>
+            <h1>عروض متجر البلوطي</h1>
+            <p>تصفح أفضل العروض والخصومات الحصرية!</p>
+        </header>
+
+        <div class="offers">
+            <!-- عرض 1 -->
+            <div class="offer">
+                <img src="https://i.imgur.com/5S5S5S5.jpg" alt="عرض 1">
+                <div class="details">
+                    <h3>عرض الرقائق</h3>
+                    <p>السعر: 1.5 دينار</p>
+                    <button class="btn" onclick="addToCart('رقائق البطاطس', 1.5)">أضف إلى السلة</button>
+                </div>
+            </div>
+
+            <!-- عرض 2 -->
+            <div class="offer">
+                <img src="https://i.imgur.com/6T6T6T6.jpg" alt="عرض 2">
+                <div class="details">
+                    <h3>عرض المعكرونة</h3>
+                    <p>السعر: 4 دينار</p>
+                    <button class="btn" onclick="addToCart('معكرونة', 4)">أضف إلى السلة</button>
+                </div>
+            </div>
+
+            <!-- عرض 3 -->
+            <div class="offer">
+                <img src="https://i.imgur.com/7U7U7U7.jpg" alt="عرض 3">
+                <div class="details">
+                    <h3>عرض الأرز</h3>
+                    <p>السعر: 5 دينار</p>
+                    <button class="btn" onclick="addToCart('أرز', 5)">أضف إلى السلة</button>
+                </div>
+            </div>
+
+            <!-- عرض 4 -->
+            <div class="offer">
+                <img src="https://i.imgur.com/8V8V8V8.jpg" alt="عرض 4">
+                <div class="details">
+                    <h3>عرض العصير</h3>
+                    <p>السعر: 2 دينار</p>
+                    <button class="btn" onclick="addToCart('عصير', 2)">أضف إلى السلة</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2023 - متجر البلوطي</p>
+        <div class="social-links" style="font-size: 2em; text-align: center;">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <!-- شريط التنقل الدائري -->
+    <nav class="circular-navbar">
+        <ul>
+            <li class="nav-item">
+                <a href="index.html">
+                    <i class="fas fa-home"></i>
+                    <span>الرئيسية</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="products.html">
+                    <i class="fas fa-box"></i>
+                    <span>المنتجات</span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a href="offers.html">
+                    <i class="fas fa-tags"></i>
+                    <span>العروض</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="cart.html">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>السلة</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="account.html">
+                    <i class="fas fa-user"></i>
+                    <span>الحساب</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>
