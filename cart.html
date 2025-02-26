@@ -7,67 +7,36 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        .dark-mode-toggle {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-        .dark-mode-toggle:hover {
-            transform: rotate(180deg);
-            background-color: #ff0000;
-        }
-        body.dark-mode {
-            background-color: #121212;
-            color: #ffffff;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-    </style>
 </head>
-<body class="size-medium">
-
-    <!-- Dark mode toggle -->
-    <div class="dark-mode-toggle" onclick="toggleDarkMode()">
-        🌙
-    </div>
-
-    <!-- شريط التنقل الدائري -->
-    <nav class="circular-navbar">
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
         <ul>
-            <li class="nav-item">
+            <li>
                 <a href="index.html">
                     <i class="fas fa-home"></i>
                     <span>الرئيسية</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li>
                 <a href="products.html">
                     <i class="fas fa-box"></i>
                     <span>المنتجات</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li>
                 <a href="offers.html">
                     <i class="fas fa-tags"></i>
                     <span>العروض</span>
                 </a>
             </li>
-            <li class="nav-item active">
+            <li class="active">
                 <a href="cart.html">
                     <i class="fas fa-shopping-cart"></i>
                     <span>السلة</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li>
                 <a href="account.html">
                     <i class="fas fa-user"></i>
                     <span>الحساب</span>
@@ -77,8 +46,8 @@
     </nav>
 
     <!-- المحتوى الرئيسي -->
-    <div class="content" style="margin-top: 60px;">
-        <header class="main-header">
+    <div class="content">
+        <header>
             <h1>سلة المشتريات</h1>
             <p>مراجعة المنتجات في سلة المشتريات الخاصة بك.</p>
         </header>
@@ -94,9 +63,10 @@
         </section>
     </div>
 
+    <!-- Footer -->
     <footer>
         <p>جميع الحقوق محفوظة &copy; 2023 - متجر البلوطي</p>
-        <div class="social-links" style="font-size: 2em; text-align: center;">
+        <div class="social-links">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
@@ -105,8 +75,33 @@
 
     <script src="script.js"></script>
     <script>
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartItemsList = document.getElementById('cart-items-list');
+            const totalAmount = document.getElementById('total-amount');
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartItemsList.innerHTML = '<li>لا يوجد أي منتجات في السلة.</li>';
+            } else {
+                cartItemsList.innerHTML = '';
+                cart.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = `${item.name} - ${item.price} دينار`;
+                    cartItemsList.appendChild(li);
+                    total += item.price;
+                });
+                totalAmount.textContent = total;
+            }
+        });
+
+        function checkout() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length === 0) {
+                alert('السلة فارغة! أضف منتجات أولاً.');
+            } else {
+                window.location.href = 'checkout.html';
+            }
         }
     </script>
 </body>
